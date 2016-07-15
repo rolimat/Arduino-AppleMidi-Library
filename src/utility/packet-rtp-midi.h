@@ -1538,6 +1538,24 @@ Serial.println("RealTime");
 			//} else {
 			//	col_add_str(pinfo->cinfo, COL_INFO, valstr );
 			//}
+			
+			switch (octet) {
+				case RTP_MIDI_STATUS_COMMON_REALTIME_TIMING_CLOCK:
+					ext_consumed = decode_midi_clock_tick(rtpMidi);
+					break;
+
+				/*case RTP_MIDI_STATUS_COMMON_REALTIME_START:
+					ext_consumed = decode_midi_clock_start(rtpMidi);
+					break; 
+				case RTP_MIDI_STATUS_COMMON_REALTIME_CONTINUE:
+					ext_consumed = decode_midi_clock_continue(rtpMidi);
+					break; 
+				case RTP_MIDI_STATUS_COMMON_REALTIME_STOP:
+					ext_consumed = decode_midi_clock_stop(rtpMidi);
+					break;*/
+			}
+
+
 
 			return 1;
 		}
@@ -3540,6 +3558,12 @@ Serial.println("aborted MIDI-command: decode_song_select");
 
 		return offset-start_offset;
 	}
+
+	static int
+	decode_midi_clock_tick(IAppleMidi* rtpMidi) {
+		rtpMidi->OnMidiClockTick(NULL);
+	}
+
 
 };
 

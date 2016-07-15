@@ -915,6 +915,20 @@ void AppleMidi_Class<UdpClass>::OnTuneRequest(void* sender)
 		mTuneRequestCallback();
 }
 
+/*! \brief .
+*/
+template<class UdpClass>
+void AppleMidi_Class<UdpClass>::OnMidiClockTick(void* sender)
+{
+#if (APPLEMIDI_DEBUG)
+	Serial.print("> MidiClockTick ()");
+#endif
+
+	if (mClockCallback)
+		mClockCallback();
+}
+
+
 //------------------------------------------------------------------------------
 
 /*! \brief Find a free session slot.
