@@ -57,7 +57,9 @@ public:
 	virtual void OnSongPosition(void* sender, int) = 0;
 	virtual void OnTuneRequest(void* sender) = 0;
 	virtual void OnMidiClockTick(void* sender) = 0;
-
+	virtual void OnMidiClockStart(void* sender) = 0;
+	virtual void OnMidiClockContinue(void* sender) = 0;
+	virtual void OnMidiClockStop(void* sender) = 0;
 };
 
 class IAppleMidi : public IRtpMidi
@@ -166,6 +168,9 @@ public:
 	inline void OnSongPosition(void* sender, int);
 	inline void OnTuneRequest(void* sender);
 	inline void OnMidiClockTick(void* sender);
+	inline void OnMidiClockStart(void* sender);
+	inline void OnMidiClockContinue(void* sender);
+	inline void OnMidiClockStop(void* sender);
 
 private:
 	inline void write(UdpClass&, AppleMIDI_InvitationRejected&, IPAddress ip, uint16_t port);

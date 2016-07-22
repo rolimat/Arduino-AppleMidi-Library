@@ -928,7 +928,44 @@ void AppleMidi_Class<UdpClass>::OnMidiClockTick(void* sender)
 		mClockCallback();
 }
 
+/*! \brief .
+*/
+template<class UdpClass>
+void AppleMidi_Class<UdpClass>::OnMidiClockStart(void* sender)
+{
+#if (APPLEMIDI_DEBUG)
+	Serial.print("> MidiClockStart ()");
+#endif
 
+	if (mStartCallback)
+		mStartCallback();
+}
+
+/*! \brief .
+*/
+template<class UdpClass>
+void AppleMidi_Class<UdpClass>::OnMidiClockContinue(void* sender)
+{
+#if (APPLEMIDI_DEBUG)
+	Serial.print("> MidiClockContinue ()");
+#endif
+
+	if (mContinueCallback)
+		mContinueCallback();
+}
+
+/*! \brief .
+*/
+template<class UdpClass>
+void AppleMidi_Class<UdpClass>::OnMidiClockStop(void* sender)
+{
+#if (APPLEMIDI_DEBUG)
+	Serial.print("> MidiClockStop ()");
+#endif
+
+	if (mStopCallback)
+		mStopCallback();
+}
 //------------------------------------------------------------------------------
 
 /*! \brief Find a free session slot.

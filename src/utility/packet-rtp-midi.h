@@ -1543,8 +1543,7 @@ Serial.println("RealTime");
 				case RTP_MIDI_STATUS_COMMON_REALTIME_TIMING_CLOCK:
 					ext_consumed = decode_midi_clock_tick(rtpMidi);
 					break;
-
-				/*case RTP_MIDI_STATUS_COMMON_REALTIME_START:
+				case RTP_MIDI_STATUS_COMMON_REALTIME_START:
 					ext_consumed = decode_midi_clock_start(rtpMidi);
 					break; 
 				case RTP_MIDI_STATUS_COMMON_REALTIME_CONTINUE:
@@ -1552,7 +1551,7 @@ Serial.println("RealTime");
 					break; 
 				case RTP_MIDI_STATUS_COMMON_REALTIME_STOP:
 					ext_consumed = decode_midi_clock_stop(rtpMidi);
-					break;*/
+					break;
 			}
 
 
@@ -3564,7 +3563,20 @@ Serial.println("aborted MIDI-command: decode_song_select");
 		rtpMidi->OnMidiClockTick(NULL);
 	}
 
+	static int
+	decode_midi_clock_start(IAppleMidi* rtpMidi) {
+		rtpMidi->OnMidiClockStart(NULL);
+	}
 
+	static int
+	decode_midi_clock_continue(IAppleMidi* rtpMidi) {
+		rtpMidi->OnMidiClockContinue(NULL);
+	}
+
+	static int
+	decode_midi_clock_stop(IAppleMidi* rtpMidi) {
+		rtpMidi->OnMidiClockStop(NULL);
+	}
 };
 
 END_APPLEMIDI_NAMESPACE
